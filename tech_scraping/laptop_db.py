@@ -48,10 +48,23 @@ class LaptopDB:
                          df["Type"][i],
                          
                          datetime.datetime.now(),
-                         datetime.datetime.now(),2  ])
+                         datetime.datetime.now(),1  ])
 
             conn.commit()
 
+            # Get the current maximum lap_id from the table (after commit)
+            cur.execute("SELECT MAX(lap_id) FROM laptop_data")
+            max_id = cur.fetchone()[0]
+            print(f"Max lap_id in table: {max_id}")
+
+            # Update the sequence to start from the next available lap_id
+            next_id = max_id + 1 if max_id else 3000  # If the table is empty, start from 3000
+            cur.execute(f"ALTER SEQUENCE lap_id_seq RESTART WITH {next_id}")
+
+            # Commit the sequence update
+            conn.commit()
+
+            cur.close()
             conn.close()
 
     def laptop_df_db_operations(self,df:pd.DataFrame,mode="get",table="df_cache"):

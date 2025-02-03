@@ -1,6 +1,6 @@
 services:
   postgresql:
-    container_name: pg_sql
+    container_name: pg_sql33
     image: postgres
     environment:
       POSTGRES_USER: postgres
@@ -14,7 +14,7 @@ services:
     restart: unless-stopped
 
   pgadmin:
-    container_name: pgadmin
+    container_name: pgadmin33
     image: dpage/pgadmin4
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}

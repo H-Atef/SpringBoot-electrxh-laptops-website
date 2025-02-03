@@ -32,7 +32,7 @@ public class Laptop{
 	
 	@Id
 	@SequenceGenerator(name = "lap_id_seq",sequenceName = "lap_id_seq",allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.AUTO,generator = "lap_id_seq")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "lap_id_seq")
 	private int lapId;
 	
 	@NotBlank(message = "Brand is Required")
