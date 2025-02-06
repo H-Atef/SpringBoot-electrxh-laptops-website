@@ -64,7 +64,7 @@ class TechScraperFacade:
         self.processing.lap_csv_files_handler()
 
         files=glob.glob("output/best_laptops.csv")+glob.glob("output/lap_*.csv")
-        self.processing.convert_files_to_final_df(files)
+        # self.processing.convert_files_to_final_df(files)
 
         df=pd.read_csv("output/final_result.csv")
 

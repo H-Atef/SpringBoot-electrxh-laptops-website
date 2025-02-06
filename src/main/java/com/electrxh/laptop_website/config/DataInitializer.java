@@ -7,6 +7,7 @@ import com.electrxh.laptop_website.repository.RoleRepo;
 import com.electrxh.laptop_website.repository.UserRepo;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +22,7 @@ public class DataInitializer {
     private final PasswordEncoder passwordEncoder;
     private final UserRepo userRepository;
 
-    @PostConstruct
+    @Bean
     public void initRoles() {
         if (roleRepository.count() == 0) {
             List<Role> roles = List.of(
@@ -32,7 +33,7 @@ public class DataInitializer {
         }
     }
 
-    @PostConstruct
+    @Bean
     public void initAdminUser() {
         if (userRepository.count() == 0) {
             UserEntity user = new UserEntity();
